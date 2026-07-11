@@ -1,16 +1,44 @@
 <?php
 try {
-  $db = new PDO("mysql:host=localhost;dbname=inventory_db", "root", "");
-  $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    // Get database connection parameters
+    require 'config.php';
+    
+    // Connect to the inventory database
+    $db = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPass);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-  $stmt = $db->query("SELECT * FROM items");
-  $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-  foreach ($items as $item) {
-    echo "<p>{$item['item_name']} ({$item['quantity']} units)</p>";
-  }
+    // Show all items in the inventory database
+    $stmt = $db->query("SELECT * FROM items");
+    $items = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 } catch (PDOException $e) {
-  echo "Connection failed: " . $e->getMessage();
+    die("Connection failed: " . $e->getMessage());
 }
 ?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Show Inventory</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+<div class="container">
+<h1>Inventory Items</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Item Name</th>
+            <th>Quantity</th>
+        </tr>
+        <?php foreach ($items as $item): ?>
+        <tr>
+            <td><?php echo $item['id']; ?></td>
+            <td><?php echo $item['item_name']; ?></td>
+            <td><?php echo $item['quantity']; ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+</div>
+</body>
+</html>
