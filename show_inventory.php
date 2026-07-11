@@ -19,7 +19,7 @@ try {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Show Inventory</title>
+    <title>Inventory Items</title>
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
