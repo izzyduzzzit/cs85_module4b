@@ -4,7 +4,11 @@ try {
     require 'config.php';
     
     // Connect to the inventory database
-    $db = new PDO("mysql:host=$dbHost;dbname=$dbName", $dbUser, $dbPass);
+    $db = new PDO(
+    "mysql:host=$dbHost;port=3306;dbname=$dbName",
+    $dbUser,
+    $dbPass
+    );
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Show all items in the inventory database
