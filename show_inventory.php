@@ -33,13 +33,17 @@ try {
         <tr>
             <th>ID</th>
             <th>Item Name</th>
+            <th>Category</th>
             <th>Quantity</th>
+            <th>Purchase Date</th>
         </tr>
         <?php foreach ($items as $item): ?>
         <tr>
             <td><?php echo $item['id']; ?></td>
             <td><?php echo $item['item_name']; ?></td>
+            <td><?php echo $item['category']; ?></td>
             <td><?php echo $item['quantity']; ?></td>
+            <td><?php echo $item['purchase_date']; ?></td>
         </tr>
         <?php endforeach; ?>
     </table>
